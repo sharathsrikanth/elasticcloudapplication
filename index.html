@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image classification</title>
+</head>
+
+<body>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <p class="card-text">Choose a file to upload it to AWS S3.</p>
+        <input type="file" name="file[]" value="file" multiple>
+        <hr>
+        <input type="submit" name="upload" value="upload" class="btn btn-success">
+    </form>
+    {{msg}}
+    <hr>
+
+    <form action="/sqsoutput">
+        <p class="card-text">Click on <b>Get Results from SQS</b> to display classification results from SQS.</p>
+        <input type="submit" name="getresult" value="Get Results from SQS">
+    </form>
+
+    <form action="/s3output">
+        <p class="card-text">Click on <b>Get Results from S3</b> to display classification results from S3.</p>
+        <input type="submit" name="getresult" value="Get Results from S3">
+    </form>
+
+    <hr>
+        <ol>
+            {% for res in result %}
+                <li><p>{{ res }}</p></li>
+            {% endfor %}
+        </ol>
+        <h3>{{msg1}}</h3>
+    <hr>
+
+</body>
+
+</html>
